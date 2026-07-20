@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>All Vehicles — DrivEx</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-drivex">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="bi bi-car-front-fill text-primary-brand"></i>
+                Driv<span>eX</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav1"><span
+                    class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="nav1">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="vehicles.html">Vehicles</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                </ul>
+                <div id="navAuthSlot" class="d-flex align-items-center"></div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-4">
+        <div class="row g-4">
+            <!-- Filters -->
+            <div class="col-lg-3">
+                <div class="filter-card">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="fw-bold mb-0">Filters</h6>
+                        <i class="bi bi-sliders text-primary-brand"></i>
+                    </div>
+
+                    <label class="mb-1">Search Car</label>
+                    <input type="text" class="form-control form-control-sm mb-3" id="fSearch" placeholder="Search by name or brand">
+
+                    <label class="mb-1">Price Range <span id="fPriceLabel"
+                            class="text-primary-brand fw-bold">$150</span></label>
+                    <div class="d-flex justify-content-between small text-muted-soft mb-1">
+                        <span>$20</span><span>$150+</span></div>
+                    <input type="range" class="form-range mb-3" id="fPrice" min="20" max="150" value="150">
+
+                    <label class="mb-1">Brand</label>
+                    <select class="form-select form-select-sm mb-3" id="fBrand">
+                        <option value="">All Brands</option>
+                    </select>
+
+                    <label class="mb-1">Fuel Type</label>
+                    <select class="form-select form-select-sm mb-3" id="fFuel">
+                        <option value="">All</option>
+                        <option>Petrol</option>
+                        <option>Diesel</option>
+                        <option>Electric</option>
+                        <option>Hybrid</option>
+                    </select>
+
+                    <label class="mb-1">Transmission</label>
+                    <select class="form-select form-select-sm mb-3" id="fTransmission">
+                        <option value="">All</option>
+                        <option>Auto</option>
+                        <option>Manual</option>
+                    </select>
+
+                    <label class="mb-1">Seats</label>
+                    <select class="form-select form-select-sm mb-3" id="fSeats">
+                        <option value="">All</option>
+                        <option value="2">2 Seats</option>
+                        <option value="5">5 Seats</option>
+                        <option value="7">7 Seats</option>
+                    </select>
+
+                    <label class="mb-2">Rating</label>
+                    <div class="mb-3">
+                        <div class="form-check"><input class="form-check-input" type="checkbox" id="fRating"><label class="form-check-label small" for="fRating"><i
+                                    class="bi bi-star-fill text-warning"></i><i
+                                    class="bi bi-star-fill text-warning"></i><i
+                                    class="bi bi-star-fill text-warning"></i><i
+                                    class="bi bi-star-fill text-warning"></i><i
+                                    class="bi bi-star-fill text-warning"></i> 4.0 &amp; above</label></div>
+                    </div>
+
+                    <button class="btn btn-brand w-100" id="fApply">Apply Filters</button>
+                    <button class="btn btn-brand-outline w-100 mt-2" id="fClear">Clear All</button>
+                </div>
+            </div>
+
+            <!-- Vehicle grid -->
+            <div class="col-lg-9">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div>
+                        <h4 class="fw-bold mb-0">All Vehicles</h4>
+                        <small class="text-muted-soft" id="resultsCount"></small>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <span class="small text-muted-soft">Sort By:</span>
+                        <select class="form-select form-select-sm w-auto" id="fSort">
+                            <option value="popular">Popular</option>
+                            <option value="price-asc">Price: Low to High</option>
+                            <option value="price-desc">Price: High to Low</option>
+                            <option value="rating">Rating</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row g-4" id="vehiclesGrid"></div>
+                <div id="noResults" class="text-center py-5 d-none">
+                    <i class="bi bi-emoji-frown display-4 text-muted-soft"></i>
+                    <p class="text-muted-soft mt-2 mb-0">No cars match your filters. Try adjusting them.</p>
+                </div>
+
+                <nav class="mt-4" id="paginationNav">
+                    <ul class="pagination justify-content-center" id="paginationList"></ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <footer class="site-footer mt-5 py-4 text-center">
+        <div class="container">
+            <p class="small mb-0">© 2026 DrivEx. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/cars-data.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/vehicles.js"></script>
+</body>
+
+</html>
