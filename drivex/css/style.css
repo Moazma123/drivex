@@ -1,0 +1,422 @@
+:root {
+    --primary: #4B2FE0;
+    --primary-dark: #3620b3;
+    --primary-light: #ede9fe;
+    --navy: #12123a;
+    --navy-soft: #1b1b4d;
+    --bg: #f4f5fa;
+    --card: #ffffff;
+    --text: #1b1c2e;
+    --muted: #7a7d92;
+    --border: #e7e8f2;
+    --success: #16a34a;
+    --success-bg: #e8f9ee;
+    --danger: #e0332a;
+    --danger-bg: #fdeceb;
+    --warning: #f5a623;
+    --warning-bg: #fef4e3;
+    --radius: 16px;
+    --radius-sm: 10px;
+    --shadow: 0 6px 20px rgba(27, 28, 46, 0.06);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 15px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Sora', 'Plus Jakarta Sans', sans-serif;
+    color: var(--text);
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+}
+
+.text-muted-soft {
+    color: var(--muted) !important;
+}
+
+.text-primary-brand {
+    color: var(--primary) !important;
+}
+
+.bg-primary-brand {
+    background: var(--primary) !important;
+}
+
+
+/* ---------- Buttons ---------- */
+
+.btn-brand {
+    background: var(--primary);
+    border: 1px solid var(--primary);
+    color: #fff;
+    border-radius: 10px;
+    font-weight: 600;
+    padding: .6rem 1.3rem;
+    transition: all .15s ease;
+}
+
+.btn-brand:hover {
+    background: var(--primary-dark);
+    border-color: var(--primary-dark);
+    color: #fff;
+}
+
+.btn-brand-outline {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 10px;
+    font-weight: 600;
+    padding: .6rem 1.3rem;
+}
+
+.btn-brand-outline:hover {
+    background: var(--primary-light);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.btn-brand-soft {
+    background: var(--primary-light);
+    color: var(--primary);
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.btn-brand-soft:hover {
+    background: var(--primary);
+    color: #fff;
+}
+
+
+/* ---------- Navbar ---------- */
+
+.navbar-drivex {
+    background: #fff;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.navbar-drivex .navbar-brand {
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: var(--text);
+}
+
+.navbar-drivex .navbar-brand span {
+    color: var(--primary);
+}
+
+.navbar-drivex .nav-link {
+    color: var(--text);
+    font-weight: 500;
+    margin: 0 .6rem;
+}
+
+.navbar-drivex .nav-link.active {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+
+/* ---------- Cards ---------- */
+
+.card-soft {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.stat-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+
+/* ---------- Hero (home) ---------- */
+
+.hero-banner {
+    background: linear-gradient(120deg, var(--navy) 0%, var(--primary) 100%);
+    border-radius: 24px;
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero-search-card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    color: var(--text);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .25);
+}
+
+.hero-search-card label {
+    font-size: .75rem;
+    color: var(--muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+}
+
+.hero-search-card .form-control,
+.hero-search-card .form-select {
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    font-weight: 600;
+}
+
+
+/* ---------- Vehicle / car cards ---------- */
+
+.car-card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+    overflow: hidden;
+    transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.car-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+}
+
+.car-card img {
+    background: #f7f8fc;
+    padding: .5rem;
+}
+
+.car-price {
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 1.15rem;
+}
+
+.car-price small {
+    color: var(--muted);
+    font-weight: 500;
+    font-size: .75rem;
+}
+
+.badge-spec {
+    background: var(--bg);
+    color: var(--muted);
+    font-weight: 600;
+    border-radius: 6px;
+    padding: .25rem .5rem;
+    font-size: .75rem;
+}
+
+
+/* ---------- Filter sidebar ---------- */
+
+.filter-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+}
+
+.filter-card label {
+    font-weight: 600;
+    font-size: .85rem;
+}
+
+.form-range::-webkit-slider-thumb {
+    background: var(--primary);
+}
+
+
+/* ---------- Status badges ---------- */
+
+.status-badge {
+    padding: .3rem .7rem;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: .72rem;
+}
+
+.status-upcoming {
+    background: var(--warning-bg);
+    color: var(--warning);
+}
+
+.status-completed {
+    background: var(--success-bg);
+    color: var(--success);
+}
+
+.status-cancelled {
+    background: var(--danger-bg);
+    color: var(--danger);
+}
+
+.status-paid {
+    background: var(--success-bg);
+    color: var(--success);
+}
+
+
+/* ---------- Dashboard sidebar ---------- */
+
+.sidebar-drivex {
+    background: var(--navy);
+    border-radius: var(--radius);
+    min-height: 600px;
+    padding: 1.5rem 1rem;
+    color: #cfd0e6;
+}
+
+.sidebar-drivex .side-link {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    padding: .7rem 1rem;
+    border-radius: 10px;
+    color: #cfd0e6;
+    font-weight: 500;
+    margin-bottom: .35rem;
+}
+
+.sidebar-drivex .side-link:hover {
+    background: var(--navy-soft);
+    color: #fff;
+}
+
+.sidebar-drivex .side-link.active {
+    background: var(--primary);
+    color: #fff;
+}
+
+.sidebar-drivex .side-badge {
+    margin-left: auto;
+    background: var(--primary);
+    color: #fff;
+    border-radius: 20px;
+    font-size: .7rem;
+    padding: .15rem .5rem;
+}
+
+
+/* ---------- Auth pages ---------- */
+
+.auth-visual {
+    background: linear-gradient(160deg, var(--navy), var(--primary));
+    border-radius: var(--radius);
+    min-height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.auth-card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 2.5rem;
+}
+
+.form-control,
+.form-select {
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    padding: .65rem .9rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 .2rem var(--primary-light);
+}
+
+label.form-label {
+    font-weight: 600;
+    font-size: .85rem;
+}
+
+
+/* ---------- Footer ---------- */
+
+footer.site-footer {
+    background: var(--navy);
+    color: #b9bad6;
+}
+
+footer.site-footer a {
+    color: #b9bad6;
+}
+
+footer.site-footer a:hover {
+    color: #fff;
+}
+
+
+/* ---------- Misc ---------- */
+
+.section-eyebrow {
+    color: var(--primary);
+    font-weight: 700;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    font-size: .75rem;
+}
+
+.rounded-16 {
+    border-radius: 16px;
+}
+
+.rounded-20 {
+    border-radius: 20px;
+}
+
+.timeline-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--primary);
+}
+
+.table-drivex thead th {
+    color: var(--muted);
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    border-bottom: 1px solid var(--border);
+    font-weight: 700;
+}
+
+.table-drivex td {
+    vertical-align: middle;
+    border-bottom: 1px solid var(--border);
+}
+
+@media (max-width:767px) {
+    .hero-search-card {
+        margin-top: 1.5rem;
+    }
+}

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard — DrivEx</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-drivex">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand" href="index.html"><i class="bi bi-car-front-fill text-primary-brand"></i> Driv<span>eX</span></a>
+            <div class="ms-auto d-flex align-items-center gap-3">
+                <i class="bi bi-bell fs-5 text-muted-soft"></i>
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center gap-2 text-decoration-none dropdown-toggle" role="button" data-bs-toggle="dropdown">
+                        <div id="userAvatar" style="width:36px;height:36px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;color:var(--primary);font-weight:700;">?</div>
+                        <span class="fw-semibold small" id="userNameLabel">—</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                        <li><a class="dropdown-item" href="my-bookings.html"><i class="bi bi-calendar2-check me-2"></i>My Bookings</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item text-danger" href="#" id="navLogoutLink"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid px-4 py-4">
+        <div class="row g-4">
+            <!-- Sidebar -->
+            <div class="col-lg-2">
+                <div class="sidebar-drivex">
+                    <a href="dashboard.html" class="side-link active"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a>
+                    <a href="my-bookings.html" class="side-link"><i class="bi bi-calendar2-check"></i> My Bookings</a>
+                    <a href="#" class="side-link"><i class="bi bi-person"></i> My Profile</a>
+                    <a href="invoice.html" class="side-link"><i class="bi bi-credit-card"></i> Payment History</a>
+                    <a href="#" class="side-link"><i class="bi bi-bell"></i> Notifications <span class="side-badge">3</span></a>
+                    <a href="#" class="side-link"><i class="bi bi-gear"></i> Settings</a>
+                    <a href="#" class="side-link" id="sidebarLogout"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                </div>
+            </div>
+
+            <!-- Main -->
+            <div class="col-lg-10">
+                <h4 class="fw-bold" id="welcomeText">Welcome back!</h4>
+                <p class="text-muted-soft">Here's what's happening with your bookings.</p>
+
+                <div class="row g-3 my-2">
+                    <div class="col-6 col-md-3">
+                        <div class="card-soft p-3">
+                            <div class="stat-icon mb-2"><i class="bi bi-journal-check"></i></div>
+                            <h4 class="fw-bold mb-0" id="statTotal">0</h4>
+                            <small class="text-muted-soft">Total Bookings</small>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="card-soft p-3">
+                            <div class="stat-icon mb-2" style="background:var(--warning-bg);color:var(--warning);"><i class="bi bi-clock-history"></i></div>
+                            <h4 class="fw-bold mb-0" id="statUpcoming">0</h4>
+                            <small class="text-muted-soft">Upcoming Trips</small>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="card-soft p-3">
+                            <div class="stat-icon mb-2" style="background:var(--success-bg);color:var(--success);"><i class="bi bi-check2-circle"></i></div>
+                            <h4 class="fw-bold mb-0" id="statCompleted">0</h4>
+                            <small class="text-muted-soft">Completed Trips</small>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="card-soft p-3">
+                            <div class="stat-icon mb-2" style="background:var(--danger-bg);color:var(--danger);"><i class="bi bi-x-circle"></i></div>
+                            <h4 class="fw-bold mb-0" id="statCancelled">0</h4>
+                            <small class="text-muted-soft">Cancelled Bookings</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-soft p-4 mt-3">
+                    <h6 class="fw-bold mb-3">Upcoming Bookings</h6>
+                    <div class="table-responsive">
+                        <table class="table table-drivex mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Car</th>
+                                    <th>Pick-up</th>
+                                    <th>Return</th>
+                                    <th>Status</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody id="upcomingTableBody"></tbody>
+                        </table>
+                        <p class="text-muted-soft text-center py-3 d-none" id="noUpcoming">No upcoming bookings yet. <a href="vehicles.html" class="text-primary-brand">Book a car</a>.</p>
+                    </div>
+                </div>
+
+                <!-- Manage Vehicles: add / remove cars from the catalog -->
+                <div class="card-soft p-4 mt-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="fw-bold mb-0">Manage Vehicles</h6>
+                        <button class="btn btn-brand-outline btn-sm" id="resetCarsBtn"><i class="bi bi-arrow-counterclockwise"></i> Reset to Default</button>
+                    </div>
+
+                    <!-- Add car form -->
+                    <form class="row g-2 align-items-end mb-4" id="addCarForm">
+                        <div class="col-6 col-md-3">
+                            <label class="form-label small">Car Name *</label>
+                            <input class="form-control form-control-sm" id="newCarName" placeholder="e.g. Kia Sportage" required>
+                        </div>
+                        <div class="col-6 col-md-2">
+                            <label class="form-label small">Brand *</label>
+                            <input class="form-control form-control-sm" id="newCarBrand" placeholder="Kia" required>
+                        </div>
+                        <div class="col-6 col-md-2">
+                            <label class="form-label small">Price/day *</label>
+                            <input type="number" min="1" class="form-control form-control-sm" id="newCarPrice" placeholder="50" required>
+                        </div>
+                        <div class="col-6 col-md-2">
+                            <label class="form-label small">Seats</label>
+                            <select class="form-select form-select-sm" id="newCarSeats">
+              <option value="2">2</option><option value="5" selected>5</option><option value="7">7</option>
+            </select>
+                        </div>
+                        <div class="col-6 col-md-2">
+                            <label class="form-label small">Transmission</label>
+                            <select class="form-select form-select-sm" id="newCarTrans">
+              <option>Auto</option><option>Manual</option>
+            </select>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <label class="form-label small">Car Photo</label>
+                            <input type="file" accept="image/*" class="form-control form-control-sm" id="newCarImage">
+                        </div>
+                        <div class="col-6 col-md-2">
+                            <img id="newCarPreview" src="../images/BMW-3.png" class="d-none" style="height:38px;border-radius:6px;border:1px solid var(--border);">
+                        </div>
+                        <div class="col-6 col-md-1">
+                            <button type="submit" class="btn btn-brand btn-sm w-100"><i class="bi bi-plus-lg"></i> Add</button>
+                        </div>
+                    </form>
+
+                    <!-- Existing vehicles table -->
+                    <div class="table-responsive">
+                        <table class="table table-drivex mb-0 align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Car</th>
+                                    <th>Brand</th>
+                                    <th>Price/day</th>
+                                    <th>Seats</th>
+                                    <th>Transmission</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="manageCarsTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Remove car confirm modal -->
+    <div class="modal fade" id="removeCarModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-16">
+                <div class="modal-body p-4 text-center">
+                    <i class="bi bi-exclamation-triangle-fill text-warning" style="font-size:2rem;"></i>
+                    <h6 class="fw-bold mt-2">Remove this vehicle?</h6>
+                    <p class="text-muted-soft small" id="removeCarName">This car will be removed from the catalog.</p>
+                    <div class="d-flex gap-2 justify-content-center">
+                        <button class="btn btn-brand-outline" data-bs-dismiss="modal">Cancel</button>
+                        <button class="btn btn-brand" style="background:var(--danger);border-color:var(--danger);" id="confirmRemoveCarBtn">Yes, Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/cars-data.js"></script>
+    <script src="../js/app.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+
+</html>
